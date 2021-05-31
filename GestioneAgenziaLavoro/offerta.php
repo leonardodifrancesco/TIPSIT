@@ -1,0 +1,52 @@
+<?php
+$AreaLavorativa =$_GET['AreaLavorativa'];
+echo"<html>
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' type='text/css' href='cssDomandaOfferta.css'>
+</head>
+
+<body>
+         
+        <div class='container' id='container'>
+        <form action='proposta_offerta.php?AreaLavorativa=$AreaLavorativa' method='POST'>
+        <h1>$AreaLavorativa</h1>
+            <p>Proposta offerta</p><br>
+            <input type='text' placeholder='Nome azienda' name='nome_azienda' />
+            <textarea type='text' placeholder='Informazioni azienda' name='informazioni_azienda' cols='40' rows='5'></textarea><br>
+            <input type='text' placeholder='Telefono' name='telefono' />
+            <textarea type='text' placeholder='Altro' name='altro' cols='40' rows='5'></textarea><br>
+            <button>Invia Offerta</button>
+        </form>
+        </div>
+";
+
+    $mysqli = new mysqli('localhost', 'root', '', 'elaborato_domanda_offerta_lavoro');
+    $query_id_aree_lavorative="SELECT id FROM aree_lavorative WHERE aree_lavorative.nome='$AreaLavorativa'";
+    $result1 = $mysqli->query($query_id_aree_lavorative);
+    $risultato1 = $result1->fetch_array();
+    $query = "SELECT * FROM domanda WHERE id_aree_lavorative=${risultato1['id']}";
+    $result =  $mysqli->query($query);
+    
+    while ($risultato = $result->fetch_assoc()) {
+        echo" 
+            <div style='margin-top: 2%'>
+            <div class='container' id='container'>
+            <div id='domandaLavoro'>
+            <h1>Domanda di lavoro</h1>
+            </div>
+            <div id='propostaofferta'>Nome: ${risultato['nome']}</div>
+            <div id='propostaofferta'>Cognome: ${risultato['cognome']}</div>
+            <div id='propostaofferta'>Curriculum Vitae: ${risultato['curriculum_vitae']}</div>
+            <div id='propostaofferta'>Tel: ${risultato['telefono']}</div>
+            <div id='propostaofferta'>Altro: ${risultato['altro']}</div>
+            </div>
+            </div>
+            ";
+            
+    }
+    echo"</body></html>";
+?>

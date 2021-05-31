@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>Registrazione</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cssLogin1.css">
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <form action="registrazione.php" method="POST">
+                <h1>Sign up</h1>
+                <input type="text" placeholder="Codice Fiscale o id azienda" name="CF" />
+                <input type="text" placeholder="Nome o Azienda" name="nome" />
+                <input type="text" placeholder="Cognome" name="cognome" />
+                <input type="email" placeholder="Email" name="email" />
+                <input type="password" placeholder="Password" name="password" />
+                <input type="text" placeholder="Telefono" name="telefono" />
+                <select name="tipo"><option value="azienda">Azienda</option><option value="privato">Candidato in cerca di lavoro</option></select>
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Sei gia registrato?</h1>
+                    <p>clicca qui per identificarti</p>
+                    <button class="ghost" id="signUp"><a href="index.html">Sign In</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
